@@ -1,2 +1,5 @@
-import { Redirect, Route  } from "react-router-dom";
-import { useAuth }
+import React from 'react';
+
+export default function PrivateRoute() {
+  return <div>PrivateRoute</div>;
+}
