@@ -1,26 +1,23 @@
 import { createContext, useState } from 'react';
 
-export const logContext = createContext();
+export const logInContext = createContext();
 
-export default function MyContext({ children }) {
-  const [user, setUser] = useState(null);
-
-  const login = (email, password) => {
-    const loggedIn =
-      email === process.env.AUTH_EMAIL &&
-      password === process.env.AUTH_PASSWORD;
-    if (loggedIn) setUser({ email });
-    return loggedIn;
-  };
-
-  const logout = (callback) => {
-    setUser(null);
-    callback();
-  };
+const ProvideAuth = ({ children }) => {
+  const [currentUser, setCurrentUser] = useState(getUser());
 
   return (
-    <logContext.Provider value={{ user, login, logout }}>
+    <logInContext.Provider value={{ currentUser, setCurrentUser }}>
       {children}
-    </logContext.Provider>
+    </logInContext.Provider>
   );
-}
+};
+
+const useLoginContext = () => {
+  const data = createContext(logInContext);
+  if (data === undefined) {
+    throw new Error('somethings up with the context.');
+  }
+  return data;
+};
+
+export { ProvideAuth, useLoginContext };
