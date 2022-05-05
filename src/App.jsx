@@ -10,9 +10,11 @@ export default function App() {
         <Route path="/auth">
           <Auth />
         </Route>
-        <PrivateRoute path="/guestbook">
+        {/* <PrivateRoute path="/"> */}
+        <Route path="/">
           <GuestBook />
-        </PrivateRoute>
+        </Route>
+        {/* </PrivateRoute> */}
       </Switch>
     </BrowserRouter>
   );
