@@ -1,6 +1,6 @@
-import { useState } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import { getUser } from './services/fetch';
+import { PrivateRoute } from './components/PrivateRoute';
+
 import Auth from './views/Auth/Auth';
 import GuestBook from './views/GuestBook/GuestBook';
 // import Home from './views/Home/Home';
@@ -12,11 +12,9 @@ export default function App() {
         <Route path="/auth">
           <Auth />
         </Route>
-        {/* <PrivateRoute path="/"> */}
-        <Route path="/">
+        <PrivateRoute path="/">
           <GuestBook />
-        </Route>
-        {/* </PrivateRoute> */}
+        </PrivateRoute>
       </Switch>
     </BrowserRouter>
   );

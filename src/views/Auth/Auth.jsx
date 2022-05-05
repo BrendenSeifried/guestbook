@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useLoginContext } from '../../context/MyContext';
-// import { logInContext } from '../../context/MyContext';
 import { signInUser, signUpUser } from '../../services/fetch';
 import './Auth.css';
 

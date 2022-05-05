@@ -1,5 +1,5 @@
 import { Redirect, Route } from 'react-router-dom';
-import { useAuth } from '../../hooks/useAuth';
+import { useAuth } from '../hooks/useAuth';
 
 export function PrivateRoute({ children, ...rest }) {
   let auth = useAuth();
@@ -12,7 +12,7 @@ export function PrivateRoute({ children, ...rest }) {
         ) : (
           <Redirect
             to={{
-              pathname: '/login',
+              pathname: '/auth',
               state: { from: location },
             }}
           />
