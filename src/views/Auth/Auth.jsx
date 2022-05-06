@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-// import { useUserContext } from '../../context/UserContext';
 import { useAuth } from '../../hooks/useAuth';
 import { signInUser, signUpUser } from '../../services/fetch';
 import './Auth.css';
@@ -11,17 +10,14 @@ export default function Authorize() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const history = useHistory();
-  // const auth = useAuth();
 
-  const [check, setCheck] = useState('sign-up');
+  const [check, setCheck] = useState('sign-in');
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       if (check === 'sign-in') {
         const data = await signInUser({ email, password });
-        // console.log(data);
         setCurrentUser(data);
-        // console.log(data);
         history.push('/');
       } else {
         const data = await signUpUser({ email, password });

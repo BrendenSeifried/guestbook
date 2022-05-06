@@ -1,5 +1,56 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { createEntry, getEntries } from '../../services/entries';
+import { signOutUser } from '../../services/fetch';
 
 export default function GuestBook() {
-  return <div>GuestBook</div>;
+  const [text, setText] = useState([]);
+  const [error, setError] = useState('');
+  const [insert, setInsert] = useState('');
+
+  useEffect(() => {
+    const renderEntries = async () => {
+      const render = getEntries();
+      setText(render);
+    };
+    renderEntries();
+  }, []);
+
+  const enterText = async () => {
+    try {
+      const info = await createEntry({ insert });
+      // setText((prevState) => [...prevState, info]);
+      setText(info);
+      console.log(info);
+      setInsert('');
+    } catch (error) {
+      setError('text did not go through');
+    }
+  };
+
+  const logOut = async () => {
+    await signOutUser();
+    // history.()
+
+    window.location.reload();
+  };
+
+  return (
+    <>
+      {error && <p>{error}</p>}
+      <>
+        <button onClick={logOut}>Logout</button>
+      </>
+      <div>
+        <label>
+          Add to the guestbook:
+          <input
+            type="text"
+            value={insert}
+            onChange={(e) => setInsert(e.target.value)}
+          />
+        </label>
+        <button onClick={enterText}>Add</button>
+      </div>
+    </>
+  );
 }
