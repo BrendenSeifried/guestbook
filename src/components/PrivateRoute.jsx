@@ -3,11 +3,12 @@ import { useAuth } from '../hooks/useAuth';
 
 export function PrivateRoute({ children, ...rest }) {
   let auth = useAuth();
+  // console.log(auth);
   return (
     <Route
       {...rest}
       render={({ location }) =>
-        auth.user ? (
+        auth.currentUser.email ? (
           children
         ) : (
           <Redirect

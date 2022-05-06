@@ -1,27 +1,31 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { useLoginContext } from '../../context/MyContext';
+import { useUserContext } from '../../context/UserContext';
+import { useAuth } from '../../hooks/useAuth';
 import { signInUser, signUpUser } from '../../services/fetch';
 import './Auth.css';
 
 export default function Authorize() {
-  const { setCurrentUser } = useLoginContext();
+  const { setCurrentUser } = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const history = useHistory();
+  // const auth = useAuth();
 
   const [check, setCheck] = useState('sign-up');
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       if (check === 'sign-in') {
-        const data = await signInUser(email, password);
-        setCurrentUser(data.email);
+        const data = await signInUser({ email, password });
+        // console.log(data);
+        setCurrentUser(data);
+        // console.log(data);
         history.push('/');
       } else {
-        const data = await signUpUser(email, password);
-        setCurrentUser(data.email);
+        const data = await signUpUser({ email, password });
+        setCurrentUser(data);
         history.push('/');
       }
     } catch (e) {
@@ -30,7 +34,7 @@ export default function Authorize() {
   };
 
   return (
-    <div>
+    <>
       <div className="txt">
         <h1
           className={check === 'sign-in' ? 'active' : 'blank'}
@@ -67,6 +71,6 @@ export default function Authorize() {
         </label>
         <button>Submit</button>
       </form>
-    </div>
+    </>
   );
 }

@@ -1,13 +1,13 @@
 import React from 'react';
 import { render } from 'react-dom';
 import App from './App';
-import { ProvideAuth } from './context/MyContext';
+import { UserProvider } from './context/UserContext';
 
 render(
   <React.StrictMode>
-    <ProvideAuth>
+    <UserProvider>
       <App />
-    </ProvideAuth>
+    </UserProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
