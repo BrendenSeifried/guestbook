@@ -51,6 +51,7 @@ export default function Authorize() {
         <label>
           Email:
           <input
+            placeholder="Email"
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -60,6 +61,7 @@ export default function Authorize() {
         <label>
           Password:
           <input
+            placeholder="Password"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { createEntry, getEntries } from '../../services/entries';
-import { signOutUser } from '../../services/fetch';
+// import { signOutUser } from '../../services/fetch';
 import BookList from './BookList';
 
 export default function GuestBook() {
@@ -28,27 +28,28 @@ export default function GuestBook() {
     }
   };
 
-  const logOut = async () => {
-    await signOutUser();
-    window.location.reload();
-  };
+  // const logOut = async () => {
+  //   await signOutUser();
+  //   window.location.reload();
+  // };
 
   return (
     <>
       {error && <p>{error}</p>}
-      <>
-        <button onClick={logOut}>Logout</button>
-      </>
+      <>{/* <button onClick={logOut}>Logout</button> */}</>
       <div>
         <label>
           Add to the guestbook:
           <input
+            placeholder="enter message"
             type="text"
             value={insert}
             onChange={(e) => setInsert(e.target.value)}
           />
         </label>
-        <button onClick={enterText}>Add</button>
+        <button aria-label="addBtn" onClick={enterText}>
+          Add
+        </button>
       </div>
 
       <>
