@@ -57,7 +57,7 @@ test('should test my stuff bro', async () => {
   server.use(
     rest.get(
       `https://ezwbsacoojmonmiqffad.supabase.co/rest/v1/entries`,
-      (req, res, ctx) => res(ctx.json(user))
+      (req, res, ctx) => res(ctx.json([user]))
     )
   );
 
