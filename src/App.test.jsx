@@ -39,6 +39,10 @@ test('should test my stuff bro', async () => {
     rest.post(
       `https://ezwbsacoojmonmiqffad.supabase.co/rest/v1/entries`,
       (req, res, ctx) => res(ctx.json(user))
+    ),
+    rest.get(
+      `https://ezwbsacoojmonmiqffad.supabase.co/rest/v1/entries`,
+      (req, res, ctx) => res(ctx.json(user))
     )
   );
 
@@ -47,13 +51,6 @@ test('should test my stuff bro', async () => {
 
   const clickAdd = await screen.findByText('Add');
   userEvent.click(clickAdd);
-
-  server.use(
-    rest.get(
-      `https://ezwbsacoojmonmiqffad.supabase.co/rest/v1/entries`,
-      (req, res, ctx) => res(ctx.json(user))
-    )
-  );
 
   const user = {
     id: 1,
