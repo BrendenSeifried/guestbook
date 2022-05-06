@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { createEntry, getEntries } from '../../services/entries';
 import { signOutUser } from '../../services/fetch';
+import BookList from './BookList';
 
 export default function GuestBook() {
   const [text, setText] = useState([]);
@@ -21,6 +22,7 @@ export default function GuestBook() {
       const info = await createEntry({ content });
       setText((prevState) => [...prevState, info]);
       // setText(info);
+      // await getEntries();
       console.log(info);
       setInsert('');
     } catch (error) {
@@ -50,6 +52,12 @@ export default function GuestBook() {
         </label>
         <button onClick={enterText}>Add</button>
       </div>
+
+      <>
+        {text.map((data) => (
+          <BookList key={data.id} data={data} />
+        ))}
+      </>
     </>
   );
 }
