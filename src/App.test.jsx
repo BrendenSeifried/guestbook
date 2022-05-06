@@ -35,12 +35,14 @@ test('should test my stuff bro', async () => {
   const submitBtn = await screen.findByRole('button');
   userEvent.click(submitBtn);
 
+  const user = {
+    id: 1,
+    created_at: '2022-6-6T00:17:29+00:00',
+    content: 'test',
+  };
+
   server.use(
     rest.post(
-      `https://ezwbsacoojmonmiqffad.supabase.co/rest/v1/entries`,
-      (req, res, ctx) => res(ctx.json(user))
-    ),
-    rest.get(
       `https://ezwbsacoojmonmiqffad.supabase.co/rest/v1/entries`,
       (req, res, ctx) => res(ctx.json(user))
     )
@@ -52,11 +54,12 @@ test('should test my stuff bro', async () => {
   const clickAdd = await screen.findByText('Add');
   userEvent.click(clickAdd);
 
-  const user = {
-    id: 1,
-    created_at: '2022-6-6T00:17:29+00:00',
-    content: 'test',
-  };
+  server.use(
+    rest.get(
+      `https://ezwbsacoojmonmiqffad.supabase.co/rest/v1/entries`,
+      (req, res, ctx) => res(ctx.json(user))
+    )
+  );
 
   await screen.findByText('test');
 
