@@ -19,14 +19,12 @@ export default function GuestBook() {
 
   const enterText = async () => {
     try {
-      const info = await createEntry({ content });
+      const info = await createEntry({ content: insert });
       setText((prevState) => [...prevState, info]);
-      // setText(info);
-      // await getEntries();
       console.log(info);
       setInsert('');
     } catch (error) {
-      setError('text did not go through');
+      setError(error.message);
     }
   };
 
