@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
 import { signInUser, signUpUser } from '../../services/fetch';
-import './Auth.css';
+import style from './Auth.css';
 
 export default function Authorize() {
   const { setCurrentUser } = useAuth();
@@ -33,14 +33,14 @@ export default function Authorize() {
     <>
       <div className="txt">
         <h1
-          className={check === 'sign-in' ? 'active' : 'blank'}
+          className={check === 'sign-in' ? style.active : style.blank}
           onClick={() => setCheck('sign-in')}
         >
           Sign in
         </h1>
 
         <h1
-          className={check === 'sign-up' ? 'active' : 'blank'}
+          className={check === 'sign-up' ? style.active : style.blank}
           onClick={() => setCheck('sign-up')}
         >
           Sign up

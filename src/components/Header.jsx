@@ -5,7 +5,11 @@ export default function Header() {
   const { currentUser } = useUserContext();
   return (
     <>
-      <h1>Welcome: ({currentUser.email})</h1>
+      {currentUser.email && (
+        <div>
+          <h1>Welcome: ({currentUser.email})</h1>
+        </div>
+      )}
     </>
   );
 }
