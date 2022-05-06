@@ -9,7 +9,8 @@ export default function GuestBook() {
 
   useEffect(() => {
     const renderEntries = async () => {
-      const render = getEntries();
+      const render = await getEntries();
+      console.log(render);
       setText(render);
     };
     renderEntries();
@@ -17,9 +18,9 @@ export default function GuestBook() {
 
   const enterText = async () => {
     try {
-      const info = await createEntry({ insert });
-      // setText((prevState) => [...prevState, info]);
-      setText(info);
+      const info = await createEntry({ content });
+      setText((prevState) => [...prevState, info]);
+      // setText(info);
       console.log(info);
       setInsert('');
     } catch (error) {
@@ -29,8 +30,6 @@ export default function GuestBook() {
 
   const logOut = async () => {
     await signOutUser();
-    // history.()
-
     window.location.reload();
   };
 
