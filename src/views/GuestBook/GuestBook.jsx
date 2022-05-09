@@ -5,13 +5,12 @@ import BookList from './BookList';
 
 export default function GuestBook() {
   const [text, setText] = useState([]);
-  // const [error, setError] = useState('');
+  const [error, setError] = useState('');
   const [insert, setInsert] = useState('');
 
   useEffect(() => {
     const renderEntries = async () => {
       const render = await getEntries();
-      console.log(render);
       setText(render);
     };
     renderEntries();
@@ -24,15 +23,10 @@ export default function GuestBook() {
     setInsert('');
   };
 
-  // const logOut = async () => {
-  //   await signOutUser();
-  //   window.location.reload();
-  // };
-
   return (
     <>
-      {/* {error && <p>{error}</p>} */}
-      <>{/* <button onClick={logOut}>Logout</button> */}</>
+      {error && <p>{error}</p>}
+
       <div>
         <label>
           Add to the guestbook:

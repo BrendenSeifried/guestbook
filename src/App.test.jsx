@@ -8,7 +8,7 @@ import { UserProvider } from './context/UserContext';
 import userEvent from '@testing-library/user-event';
 
 const server = setupServer(
-  rest.post(
+  rest.options(
     `https://ezwbsacoojmonmiqffad.supabase.co/auth/v1/token`,
     (req, res, ctx) => res(ctx.json(mockedData))
   )
@@ -44,12 +44,12 @@ test('should test my stuff bro', async () => {
   server.use(
     rest.post(
       `https://ezwbsacoojmonmiqffad.supabase.co/rest/v1/entries`,
-      (req, res, ctx) => res(ctx.json([user]))
+      (req, res, ctx) => res(ctx.json(user))
     )
   );
 
   const guesttest = await screen.findByPlaceholderText('enter message');
-  userEvent.type(guesttest, 'testing123');
+  userEvent.type(guesttest, 'test');
 
   const clickAdd = await screen.findByText('Add');
   userEvent.click(clickAdd);
