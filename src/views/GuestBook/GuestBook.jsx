@@ -18,14 +18,10 @@ export default function GuestBook() {
   }, []);
 
   const enterText = async () => {
-    try {
-      const info = await createEntry({ content: insert });
-      setText((prevState) => [...prevState, info]);
-      console.log(info);
-      setInsert('');
-    } catch (error) {
-      setError(error.message);
-    }
+    const info = await createEntry({ content: insert });
+    setText((prevState) => [...prevState, info]);
+    // console.log(info);
+    setInsert('');
   };
 
   // const logOut = async () => {
@@ -52,11 +48,11 @@ export default function GuestBook() {
         </button>
       </div>
 
-      <>
+      <div>
         {text.map((data) => (
           <BookList key={data.id} data={data} />
         ))}
-      </>
+      </div>
     </>
   );
 }

@@ -44,7 +44,7 @@ test('should test my stuff bro', async () => {
   server.use(
     rest.post(
       `https://ezwbsacoojmonmiqffad.supabase.co/rest/v1/entries`,
-      (req, res, ctx) => res(ctx.json(user))
+      (req, res, ctx) => res(ctx.json([user]))
     )
   );
 
@@ -61,7 +61,7 @@ test('should test my stuff bro', async () => {
     )
   );
 
-  await screen.findByText('test');
+  await screen.findByText('Made By: 1@1');
 
   screen.debug();
 });

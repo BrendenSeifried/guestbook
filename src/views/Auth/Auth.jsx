@@ -24,8 +24,8 @@ export default function Authorize() {
         setCurrentUser(data);
         history.push('/');
       }
-    } catch (e) {
-      setError(e.message);
+    } catch (error) {
+      setError(error.message);
     }
   };
 
