@@ -5,7 +5,7 @@ import BookList from './BookList';
 
 export default function GuestBook() {
   const [text, setText] = useState([]);
-  const [error, setError] = useState('');
+  // const [error, setError] = useState('');
   const [insert, setInsert] = useState('');
 
   useEffect(() => {
@@ -31,7 +31,7 @@ export default function GuestBook() {
 
   return (
     <>
-      {error && <p>{error}</p>}
+      {/* {error && <p>{error}</p>} */}
       <>{/* <button onClick={logOut}>Logout</button> */}</>
       <div>
         <label>
